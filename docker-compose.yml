@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  squad-utils:
+    command: -c /config.yaml
+    image: sq-utils
+    restart: always
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./config.yaml:/config.yaml

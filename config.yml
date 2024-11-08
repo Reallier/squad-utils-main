@@ -1,0 +1,25 @@
+# Docker Socket 路径
+# 需要注意访问本地 socket 开头必须是 unix:// 总共三个 /
+socket: unix:///var/run/docker.sock
+# 过滤启动镜像
+image: 
+# 日志级别
+logLevel: debug
+# 附属启动镜像地址
+startupImages:
+  a2sServer: 
+  promtail: grafana/promtail:latest
+# 一些卷信息,创建容器会用到
+# 注意以下都指的是主机上的路径
+# 强烈建议使用同源挂载
+volumes:
+  # 指定翼龙数据目录
+  # 请注意这里必须是存放翼龙 volumes 的目录
+  pter: /var/lib/pterodactyl/volumes
+# 设定侦听
+ports:
+  # a2s 服务的侦听端口
+  # 将会在这个范围里随机取一个
+  a2s:
+    min: 12003
+    max: 15003
